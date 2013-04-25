@@ -7,7 +7,6 @@ def crawl_domain (domain)
 	Anemone.crawl('http://localhost:8080/bodgeit') do |anemone|
   		anemone.on_every_page { |page| titles.push page.url rescue nil }
 	end
-
 	titles
 end
 
@@ -16,16 +15,22 @@ def discover_links(domain, common_url_path)
   Anemone.crawl(domain) do |anemone|
     anemone.on_every_page do |page|
       puts "Discovered on #{page.url}"
-      page.links.each do |x|
-        puts x
-        pages[x.path] = true
+      page.links.each do |link|
+        puts link
+        pages[link.to_s] = true
       end
       puts
     end
   end
   puts "Pages not linked"
   pages.each do |k, v|
-    puts k if !v
+    if !v
+      page = Nokogiri::HTML(open(k))
+      puts "Discovered on #{k}"
+      page.css('a').each do |link|
+        puts "#{domain}/#{link.attr('href')}"
+      end
+    end
   end
 end
 
