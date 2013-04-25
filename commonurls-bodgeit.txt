@@ -1,0 +1,7 @@
+/bodgeit/admin.jsp
+/bodgeit/home.jsp
+/bodgeit/about.jsp
+/bodgeit/contact.jsp
+/bodgeit/login.jsp
+/bodgeit/basket.jsp
+/bodgeit/search.jsp
