@@ -38,14 +38,14 @@ class Crawler
 
 						# if the link is valid set it to traverse
 						if not (href.to_s =~ URI::regexp(["http", "https"])).nil?
-						
+
 							#get the base webpage so we don't keep navigating to duplicate pages
 							href_path = String.new(href)
 							href_path.slice!(href_path.index('?') ... href_path.size) if not href_path.index('?').nil?
 							href_path.slice!(href_path.index(';') ... href_path.size) if not href_path.index(';').nil?
 							href_path.slice!(href_path.index('#') ... href_path.size) if not href_path.index('#').nil?
 
-							
+
 							# if a link is legit and hasn't been visited yet throw it on the stack
 							# for a link to be legit it must be in the same domain
 							if not paths_visited.include? href_path and is_same_domain(href, url)
@@ -80,15 +80,13 @@ class Crawler
 
 			# Now that we're done, let's print out all the cookies we found
 			puts "Cookies Found:"
-			@browser.cookies.to_a.each { |cookie| 
-				puts "\t#{cookie}"
-			}
+			@browser.cookies.to_a.each { |cookie|puts "\t#{cookie}" }
 
 		rescue => error
 			puts error
 		ensure
 			@browser.close if not @browser.nil?
-		end		
+		end
 	end
 
 
@@ -101,4 +99,3 @@ end
 
 crawl = Crawler.new
 crawl.discover_all_inputs()
-	

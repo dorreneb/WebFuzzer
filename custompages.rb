@@ -13,6 +13,7 @@ class CustomPages
 		set_login("http://127.0.0.1/dvwa", "admin", "password", "username", "password");	
 		set_login("http://127.0.0.1:8080/bodgeit/login.jsp", "test@example.com", "example", "username", "password")	
 
+
 		# sets additional pages that should be manually scanned
 		@custom_scannable_pages = ["http://127.0.0.1:80/dvwa/login.php"]
 
