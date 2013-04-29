@@ -9,18 +9,19 @@ class Crawler
 
 	def initialize
 		@custom_pages = CustomPages.new
-		@max = 0;
+		@browser = Watir::Browser.new
+
 	end
 
 	def discover_all_inputs(root_url = "http://127.0.0.1")
 		paths_visited = Set.new
 		link_queue = []
 		link_queue << root_url
+		@browser.cookies.clear
 
 		puts "Searching for inputs from root #{root_url}..."
 
 		begin
-			b = Watir::Browser.new 
 			while (link_queue.size > 0)
 				url = link_queue.pop
 				puts "Scanning #{url}..."
@@ -28,46 +29,62 @@ class Crawler
 				if @custom_pages.ignore_pages.include? url
 					puts "\t#{url} has been flagged to be ignored."
 				else
-					b.goto url
+					# Go to next page
+					@browser.goto url
 
-					puts "\tNew Links:" if b.links.size > 0
-					b.links.each do |link|
+					# Get the links to keep navigating
+					puts "\tNew Links:" if @browser.links.size > 0
+					@browser.links.each do |link|
+						#grab link address
 						href = link.href
-						
-						href_path = String.new(href)
-						href_path.slice!(href_path.index('?')-1 ... href_path.size) if not href_path.index('?').nil?
-						href_path.slice!(href_path.index(';')-1 ... href_path.size) if not href_path.index(';').nil?
-						href_path.slice!(href_path.index('#')-1 ... href_path.size) if not href_path.index('#').nil?
 
+						# if the link is valid set it to traverse
+						if not (href.to_s =~ URI::regexp(["http", "https"])).nil?
 						
-						if not paths_visited.include? href_path and not (href.to_s =~ URI::regexp(["http", "https"])).nil?
-							puts "\t\t#{href_path}"
-							link_queue << href
-							paths_visited << href_path
+							#get the base webpage so we don't keep navigating to duplicate pages
+							href_path = String.new(href)
+							href_path.slice!(href_path.index('?')-1 ... href_path.size) if not href_path.index('?').nil?
+							href_path.slice!(href_path.index(';')-1 ... href_path.size) if not href_path.index(';').nil?
+							href_path.slice!(href_path.index('#')-1 ... href_path.size) if not href_path.index('#').nil?
+
+							
+							# if a link is legit and hasn't been visited yet throw it on the stack
+							if not paths_visited.include? href_path
+								puts "\t\t#{href_path}"
+								link_queue << href 			# keep full URL in case you need to pass args through
+								paths_visited << href_path	# store base path so no duplicates happen
+							end
 						end
+					end
+
+					# if a link is marked as a login page feed it credentials
+					if not @custom_pages.login_pages[url].empty?
+						puts "\t#{url} is flagged as a login page."
+						creds = @custom_pages.login_pages[url]
+						puts creds["username"]
 					end
 				end
 				puts
 			end
+
+			# Now that we're done, let's print out all the cookies we found
+			puts "Cookies Found:"
+			@browser.cookies.to_a.each { |cookie| 
+				puts "\t#{cookie}"
+			}
+
 		rescue => error
-			puts "#{error} (url: #{url}) (link: #{href})"
+			puts error
 		ensure
-			b.close if not b.nil?
-		end
-		
+			@browser.close if not @browser.nil?
+		end		
 	end
 
-	def discover_all_inputs_with_whitelist(root_url="http://127.0.0.1") 
-		discover_all_inputs(root_url)
-		@custom_pages.custom_scannable_pages.each do |page|
-			discover_all_inputs(page)
-		end
-	end
 end
 
 puts "Enter URL root (Leave blank for 127.0.0.1):"
 url = gets.chomp
-url = "http://127.0.0.1" if url.nil? or url.empty?
+url = "http://127.0.0.1" if url.empty?
 
 crawl = Crawler.new
 pages = crawl.discover_all_inputs(url)
