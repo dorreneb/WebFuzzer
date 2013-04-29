@@ -47,7 +47,8 @@ class Crawler
 
 							
 							# if a link is legit and hasn't been visited yet throw it on the stack
-							if not paths_visited.include? href_path
+							# for a link to be legit it must be in the same domain
+							if not paths_visited.include? href_path and is_same_domain(href, url)
 								puts "\t\tFound #{href_path}"
 								link_queue << href 			# keep full URL in case you need to pass args through
 								paths_visited << href_path	# store base path so no duplicates happen
@@ -55,12 +56,17 @@ class Crawler
 						end
 					end
 
-					# if a link is marked as a login page feed it credentials
+					# if a link is marked as a login page feed it credentials and get the resulting page in the link queue
 					if not @custom_pages.login_pages[url].empty?
 						puts "\t#{url} is flagged as a login page."
 						creds = @custom_pages.login_pages[url]
 						puts "\t\tCredentials: #{creds["username"]}/#{creds["password"]}"
 
+						@browser.text_field(:name, creds["userfield"]).set(creds["username"])
+						@browser.text_field(:name, creds["passfield"]).set(creds["password"])
+						@browser.input(:type=>"submit").click
+
+						link_queue << @browser.url
 					end
 				end
 			end
@@ -76,6 +82,12 @@ class Crawler
 		ensure
 			@browser.close if not @browser.nil?
 		end		
+	end
+
+
+	def is_same_domain(url1, url2)
+		regex = /\/\/[A-Za-z0-9\.]*/
+		url1.scan(regex).eql? url2.scan(regex)
 	end
 
 end
