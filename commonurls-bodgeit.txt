@@ -1,7 +1,0 @@
-http://localhost:8080/bodgeit/admin.jsp
-http://localhost:8080/bodgeit/home.jsp
-http://localhost:8080/bodgeit/about.jsp
-http://localhost:8080/bodgeit/contact.jsp
-http://localhost:8080/bodgeit/login.jsp
-http://localhost:8080/bodgeit/basket.jsp
-http://localhost:8080/bodgeit/search.jsp
