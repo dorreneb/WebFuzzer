@@ -19,13 +19,13 @@ class Configs
 		@ignore_pages = ["http://127.0.0.1:8080/WebGoat/attack", "http://127.0.0.1/dvwa/logout.php"]
 
 		# sets how long that it should wait between requests in seconds
-		@wait_time = 1
+		@wait_time = 0
 
 		# sets whether password guessing should happen
 		@password_guessing = true
 
 		# common passwords to try during password guessing
-		@common_passwords = ['password', 'test', 'example']
+		@common_passwords = ['password', 'test', 'example', 'abc123']
 	end
 
 	def set_login(url, username, password, userfieldname, passfieldname)

@@ -4,6 +4,7 @@ require 'set'
 require 'open-uri'
 require './configs'
 require 'watir-webdriver'
+require 'terminal-table'
 
 class Crawler
 
@@ -75,18 +76,29 @@ class Crawler
 						link_queue << new_loc if not link_queue.include? new_loc and not paths_visited.include? new_loc
 					end
 
-					puts "\tInputs Found:" if @browser.inputs.size > 0
+					puts "\n\tInputs Found:" if @browser.inputs.size > 0
 					# pull inputs out of page
 					@browser.inputs.each do |input|
-						puts "\t\t#{input.html}"
+						puts "\t\tname: #{input.name}" if not input.name.empty?
+						puts "\t\ttype: #{input.type}" if not input.type.empty?
+						puts "\t\tvalue: #{input.value}" if not input.value.empty?
+						puts
 					end
           sleep @configs.wait_time
 				end
+				puts "-"*60
 			end
-
 			# Now that we're done, let's print out all the cookies we found
 			puts "Cookies Found:"
-			@browser.cookies.to_a.each { |cookie|puts "\t#{cookie}" }
+			@browser.cookies.to_a.each do |cookie|
+				puts "\tname: #{cookie[:name]}"
+				puts "\tvalue: #{cookie[:value]}"
+				puts "\tpath: #{cookie[:path]}"
+				puts "\tdomain: #{cookie[:domain]}"
+				puts "\texpires: #{cookie[:expires]}"
+				puts "\tsecure: #{cookie[:secure]}"
+				puts
+			end
       sleep @configs.wait_time
 		rescue => error
 			puts error
