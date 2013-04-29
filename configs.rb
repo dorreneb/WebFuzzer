@@ -10,17 +10,22 @@ class Configs
 		# wooo multi-dimensional hash. don't try this at home.
 		@login_pages = Hash.new{|a,b| a[b] = Hash.new(&a.default_proc)}
 		set_login("http://127.0.0.1/dvwa", "admin", "password", "username", "password")
-		set_login("http://127.0.0.1:8080/bodgeit/login.jsp", "test@example.com", "example", "username", "password")
-
+		set_login("http://127.0.0.1:8080/bodgeit/login.jsp", "test@thebodgeitstore.com", "password", "username", "password")
 
 		# sets additional pages that should be manually scanned
-		@custom_scannable_pages = ["http://127.0.0.1:80/dvwa/login.php"]
+		@custom_scannable_pages = ["http://127.0.0.1:8080/bodgeit/admin.jsp"]
 
 		# sets pages that should be ignored
 		@ignore_pages = ["http://127.0.0.1:8080/WebGoat/attack", "http://127.0.0.1/dvwa/logout.php"]
 
 		# sets how long that it should wait between requests in seconds
-		@wait_time = 5
+		@wait_time = 1
+
+		# sets whether password guessing should happen
+		@password_guessing = true
+
+		# common passwords to try during password guessing
+		@common_passwords = ['password', 'test', 'example']
 	end
 
 	def set_login(url, username, password, userfieldname, passfieldname)

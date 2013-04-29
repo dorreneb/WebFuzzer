@@ -16,6 +16,7 @@ class Crawler
 		paths_visited = Set.new
 		link_queue = []
 		link_queue << @configs.root_url
+		link_queue.concat(@configs.custom_scannable_pages)
 		@browser.cookies.clear
 
 		puts "Searching for inputs from root #{@configs.root_url}..."
