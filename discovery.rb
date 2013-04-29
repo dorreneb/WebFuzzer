@@ -2,30 +2,30 @@
 
 require 'set'
 require 'open-uri'
-require './custompages.rb'
+require './configs'
 require 'watir-webdriver'
 
 class Crawler
 
 	def initialize
-		@custom_pages = CustomPages.new
+		@configs = Configs.new
 		@browser = Watir::Browser.new
 	end
 
 	def discover_all_inputs()
 		paths_visited = Set.new
 		link_queue = []
-		link_queue << @custom_pages.root_url
+		link_queue << @configs.root_url
 		@browser.cookies.clear
 
-		puts "Searching for inputs from root #{@custom_pages.root_url}..."
+		puts "Searching for inputs from root #{@configs.root_url}..."
 
 		begin
 			while (link_queue.size > 0)
 				url = link_queue.pop
 				puts "Scanning #{url}..."
 
-				if @custom_pages.ignore_pages.include? url
+				if @configs.ignore_pages.include? url
 					puts "\t#{url} has been flagged to be ignored."
 				else
 					# Go to next page
@@ -55,16 +55,20 @@ class Crawler
 							end
 						end
 					end
+          sleep @configs.wait_time
 
 					# if a link is marked as a login page feed it credentials and get the resulting page in the link queue
-					if not @custom_pages.login_pages[url].empty?
+					if not @configs.login_pages[url].empty?
 						puts "\t#{url} is flagged as a login page."
-						creds = @custom_pages.login_pages[url]
+						creds = @configs.login_pages[url]
 						puts "\t\tCredentials: #{creds["username"]}/#{creds["password"]}"
 
 						@browser.text_field(:name, creds["userfield"]).set(creds["username"])
+            sleep @configs.wait_time
 						@browser.text_field(:name, creds["passfield"]).set(creds["password"])
+            sleep @configs.wait_time
 						@browser.input(:type=>"submit").click
+            sleep @configs.wait_time
 						new_loc = @browser.url
 
 						link_queue << new_loc if not link_queue.include? new_loc and not paths_visited.include? new_loc
@@ -75,13 +79,14 @@ class Crawler
 					@browser.inputs.each do |input|
 						puts "\t\t#{input.html}"
 					end
+          sleep @configs.wait_time
 				end
 			end
 
 			# Now that we're done, let's print out all the cookies we found
 			puts "Cookies Found:"
 			@browser.cookies.to_a.each { |cookie|puts "\t#{cookie}" }
-
+      sleep @configs.wait_time
 		rescue => error
 			puts error
 		ensure
