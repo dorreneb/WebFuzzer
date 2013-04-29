@@ -49,7 +49,7 @@ class Crawler
 							# if a link is legit and hasn't been visited yet throw it on the stack
 							# for a link to be legit it must be in the same domain
 							if not paths_visited.include? href_path and is_same_domain(href, url)
-								puts "\t\tFound #{href_path}"
+								puts "\tFound #{href_path}"
 								link_queue << href 			# keep full URL in case you need to pass args through
 								paths_visited << href_path	# store base path so no duplicates happen
 							end
@@ -65,8 +65,15 @@ class Crawler
 						@browser.text_field(:name, creds["userfield"]).set(creds["username"])
 						@browser.text_field(:name, creds["passfield"]).set(creds["password"])
 						@browser.input(:type=>"submit").click
+						new_loc = @browser.url
 
-						link_queue << @browser.url
+						link_queue << new_loc if not link_queue.include? new_loc and not paths_visited.include? new_loc
+					end
+
+					puts "\tInputs Found:" if @browser.inputs.size > 0
+					# pull inputs out of page
+					@browser.inputs.each do |input|
+						puts "\t\t#{input.html}"
 					end
 				end
 			end

@@ -10,7 +10,8 @@ class CustomPages
 		# sets what pages should be logged into and what the credentials are
 		# wooo multi-dimensional hash. don't try this at home.
 		@login_pages = Hash.new{|a,b| a[b] = Hash.new(&a.default_proc)}
-		set_login("http://127.0.0.1/dvwa", "admin", "password", "username", "password");		
+		set_login("http://127.0.0.1/dvwa", "admin", "password", "username", "password");	
+		set_login("http://127.0.0.1:8080/bodgeit/login.jsp", "test@example.com", "example", "username", "password")	
 
 		# sets additional pages that should be manually scanned
 		@custom_scannable_pages = ["http://127.0.0.1:80/dvwa/login.php"]
