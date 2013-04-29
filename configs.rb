@@ -13,7 +13,7 @@ class Configs
 		set_login("http://127.0.0.1:8080/bodgeit/login.jsp", "test@thebodgeitstore.com", "password", "username", "password")
 
 		# sets additional pages that should be manually scanned
-		@custom_scannable_pages = ["http://127.0.0.1:8080/bodgeit/admin.jsp"]
+		@custom_scannable_pages = ["http://127.0.0.1:8080/bodgeit/admin.jsp", "http://127.0.0.1/dvwa/vulnerabilities/view_source.php","http://127.0.0.1/dvwa/vulnerabilities/view_source_all.php", "http://127.0.0.1/dvwa"]
 
 		# sets pages that should be ignored
 		@ignore_pages = ["http://127.0.0.1:8080/WebGoat/attack", "http://127.0.0.1/dvwa/logout.php"]
