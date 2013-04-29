@@ -10,16 +10,15 @@ class Crawler
 	def initialize
 		@custom_pages = CustomPages.new
 		@browser = Watir::Browser.new
-
 	end
 
-	def discover_all_inputs(root_url = "http://127.0.0.1")
+	def discover_all_inputs()
 		paths_visited = Set.new
 		link_queue = []
-		link_queue << root_url
+		link_queue << @custom_pages.root_url
 		@browser.cookies.clear
 
-		puts "Searching for inputs from root #{root_url}..."
+		puts "Searching for inputs from root #{@custom_pages.root_url}..."
 
 		begin
 			while (link_queue.size > 0)
@@ -33,7 +32,6 @@ class Crawler
 					@browser.goto url
 
 					# Get the links to keep navigating
-					puts "\tNew Links:" if @browser.links.size > 0
 					@browser.links.each do |link|
 						#grab link address
 						href = link.href
@@ -43,14 +41,14 @@ class Crawler
 						
 							#get the base webpage so we don't keep navigating to duplicate pages
 							href_path = String.new(href)
-							href_path.slice!(href_path.index('?')-1 ... href_path.size) if not href_path.index('?').nil?
-							href_path.slice!(href_path.index(';')-1 ... href_path.size) if not href_path.index(';').nil?
-							href_path.slice!(href_path.index('#')-1 ... href_path.size) if not href_path.index('#').nil?
+							href_path.slice!(href_path.index('?') ... href_path.size) if not href_path.index('?').nil?
+							href_path.slice!(href_path.index(';') ... href_path.size) if not href_path.index(';').nil?
+							href_path.slice!(href_path.index('#') ... href_path.size) if not href_path.index('#').nil?
 
 							
 							# if a link is legit and hasn't been visited yet throw it on the stack
 							if not paths_visited.include? href_path
-								puts "\t\t#{href_path}"
+								puts "\t\tFound #{href_path}"
 								link_queue << href 			# keep full URL in case you need to pass args through
 								paths_visited << href_path	# store base path so no duplicates happen
 							end
@@ -61,10 +59,10 @@ class Crawler
 					if not @custom_pages.login_pages[url].empty?
 						puts "\t#{url} is flagged as a login page."
 						creds = @custom_pages.login_pages[url]
-						puts creds["username"]
+						puts "\t\tCredentials: #{creds["username"]}/#{creds["password"]}"
+
 					end
 				end
-				puts
 			end
 
 			# Now that we're done, let's print out all the cookies we found
@@ -82,10 +80,6 @@ class Crawler
 
 end
 
-puts "Enter URL root (Leave blank for 127.0.0.1):"
-url = gets.chomp
-url = "http://127.0.0.1" if url.empty?
-
 crawl = Crawler.new
-pages = crawl.discover_all_inputs(url)
+crawl.discover_all_inputs()
 	
