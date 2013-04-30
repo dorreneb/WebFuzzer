@@ -61,17 +61,24 @@ class Crawler
 
 					# if a link is marked as a login page feed it credentials and get the resulting page in the link queue
 					if not @configs.login_pages[url].empty?
-						puts "\t#{url} is flagged as a login page."
-						creds = @configs.login_pages[url]
-						puts "\t\tCredentials: #{creds["username"]}/#{creds["password"]}"
+						new_loc = url
 
-						@browser.text_field(:name, creds["userfield"]).set(creds["username"])
-            sleep @configs.wait_time
-						@browser.text_field(:name, creds["passfield"]).set(creds["password"])
-            sleep @configs.wait_time
-						@browser.input(:type=>"submit").click
-            sleep @configs.wait_time
-						new_loc = @browser.url
+						# if password guessing is turned on, guess passwords
+						if @configs.password_guessing
+							@configs.common_passwords.each do |password|
+								puts "\t#{new_loc} is flagged as a login page."
+								creds = @configs.login_pages[new_loc]
+
+								new_loc = login creds['userfield'], creds['passfield'], creds['username'], password
+								break if not @browser.text_field(:name, creds["passfield"]).exists?
+							end
+						else
+							puts "\t#{url} is flagged as a login page."
+							creds = @configs.login_pages[url]
+							puts "\t\tCredentials: #{creds["username"]}/#{creds["password"]}"
+
+							new_loc = login creds['userfield'], creds['passfield'], creds['username'], creds['password']
+						end
 
 						link_queue << new_loc if not link_queue.include? new_loc and not paths_visited.include? new_loc
 					end
@@ -111,6 +118,18 @@ class Crawler
 	def is_same_domain(url1, url2)
 		regex = /\/\/[A-Za-z0-9\.]*/
 		url1.scan(regex).eql? url2.scan(regex)
+	end
+
+	def login userfield, passfield, username, password
+		puts "\t\tCredentials: #{username}/#{password}"
+
+		@browser.text_field(:name, userfield).set(username)
+    sleep @configs.wait_time
+		@browser.text_field(:name, passfield).set(password)
+    sleep @configs.wait_time
+		@browser.input(:type=>"submit").click
+    sleep @configs.wait_time
+		@browser.url
 	end
 
 end
