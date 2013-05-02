@@ -1,5 +1,5 @@
 class Configs
-	attr_reader :login_pages, :custom_scannable_pages, :ignore_pages, :root_url, :wait_time, :password_guessing, :common_passwords
+	attr_reader :login_pages, :custom_scannable_pages, :ignore_pages, :root_url, :wait_time, :password_guessing, :common_passwords, :complete
 
 	def initialize()
 		# the first url to scan. will spider out from here.
@@ -23,6 +23,9 @@ class Configs
 
 		# sets whether password guessing should happen
 		@password_guessing = false
+
+		#sets whether it should try every page and input fields  or random pages and input fields
+		@complete = true
 
 		# common passwords to try during password guessing
 		@common_passwords = []
