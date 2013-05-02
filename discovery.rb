@@ -21,28 +21,29 @@ class Crawler
 		link_queue.concat(@configs.custom_scannable_pages)
 		@browser.cookies.clear
 
-		puts "Searching for inputs from root #{@configs.root_url}..."
+		@discover_inputs_file.write("Searching for inputs from root #{@configs.root_url}...\n")
 
 		begin
 			while (link_queue.size > 0)
 				url = link_queue.pop
-				puts "Scanning #{url}..."
+				@discover_inputs_file.write("Scanning #{url}...\n")
 
 				if @configs.ignore_pages.include? url
-					puts "\t#{url} has been flagged to be ignored."
+					@discover_inputs_file.write("\t#{url} has been flagged to be ignored.\n")
 				else
 					find_links(url, link_queue, paths_visited)
           sleep @configs.wait_time
 					login_pages(url, link_queue, paths_visited)
 					inputs_found
 				end
-				puts "-"*60
+				@discover_inputs_file.write("#{"-"*60}\n")
 			end
 			cookies_found
 		rescue => error
 			puts error
 		ensure
 			@browser.close if not @browser.nil?
+			@discover_inputs_file.close
 		end
 	end
 
@@ -74,7 +75,7 @@ class Crawler
 				# if a link is legit and hasn't been visited yet throw it on the stack
 				# for a link to be legit it must be in the same domain
 				if not paths_visited.include? href_path and is_same_domain(href, url)
-					puts "\tFound #{href_path}"
+					@discover_inputs_file.write("\tFound #{href_path}\n")
 					link_queue << href 			# keep full URL in case you need to pass args through
 					paths_visited << href_path	# store base path so no duplicates happen
 				end
@@ -83,7 +84,7 @@ class Crawler
 	end
 
 	def login(userfield, passfield, username, password)
-		puts "\t\tCredentials: #{username}/#{password}"
+		@discover_inputs_file.write("\t\tCredentials: #{username}/#{password}\n")
 
 		@browser.text_field(:name, userfield).set(username)
     sleep @configs.wait_time
@@ -102,16 +103,16 @@ class Crawler
 			# if password guessing is turned on, guess passwords
 			if @configs.password_guessing
 				@configs.common_passwords.each do |password|
-					puts "\t#{new_loc} is flagged as a login page."
+					@discover_inputs_file.write("\t#{new_loc} is flagged as a login page.\n")
 					creds = @configs.login_pages[new_loc]
 
 					new_loc = login creds['userfield'], creds['passfield'], creds['username'], password
 					break if not @browser.text_field(:name, creds["passfield"]).exists?
 				end
 			else
-				puts "\t#{url} is flagged as a login page."
+				@discover_inputs_file.write("\t#{url} is flagged as a login page.\n")
 				creds = @configs.login_pages[url]
-				puts "\t\tCredentials: #{creds["username"]}/#{creds["password"]}"
+				@discover_inputs_file.write("\t\tCredentials: #{creds["username"]}/#{creds["password"]}\n")
 
 				new_loc = login creds['userfield'], creds['passfield'], creds['username'], creds['password']
 			end
@@ -121,28 +122,28 @@ class Crawler
 	end
 
 	def inputs_found
-		puts "\n\tInputs Found:" if @browser.inputs.size > 0
+		@discover_inputs_file.write("\n\tInputs Found:\n") if @browser.inputs.size > 0
 		# pull inputs out of page
 		@browser.inputs.each do |input|
-			puts "\t\tname: #{input.name}" if not input.name.empty?
-			puts "\t\ttype: #{input.type}" if not input.type.empty?
-			puts "\t\tvalue: #{input.value}" if not input.value.empty?
-			puts
+			@discover_inputs_file.write("\t\tname: #{input.name}\n") if not input.name.empty?
+			@discover_inputs_file.write("\t\ttype: #{input.type}\n") if not input.type.empty?
+			@discover_inputs_file.write("\t\tvalue: #{input.value}\n") if not input.value.empty?
+			@discover_inputs_file.write("\n")
 		end
     sleep @configs.wait_time
 	end
 
 	def cookies_found
 		# Now that we're done, let's print out all the cookies we found
-		puts "Cookies Found:"
+		@discover_inputs_file.write("Cookies Found:\n")
 		@browser.cookies.to_a.each do |cookie|
-			puts "\tname: #{cookie[:name]}"
-			puts "\tvalue: #{cookie[:value]}"
-			puts "\tpath: #{cookie[:path]}"
-			puts "\tdomain: #{cookie[:domain]}"
-			puts "\texpires: #{cookie[:expires]}"
-			puts "\tsecure: #{cookie[:secure]}"
-			puts
+			@discover_inputs_file.write("\tname: #{cookie[:name]}\n")
+			@discover_inputs_file.write("\tvalue: #{cookie[:value]}\n")
+			@discover_inputs_file.write("\tpath: #{cookie[:path]}\n")
+			@discover_inputs_file.write("\tdomain: #{cookie[:domain]}\n")
+			@discover_inputs_file.write("\texpires: #{cookie[:expires]}\n")
+			@discover_inputs_file.write("\tsecure: #{cookie[:secure]}\n")
+			@discover_inputs_file.write("\n")
 		end
     sleep @configs.wait_time
   end
