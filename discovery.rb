@@ -49,7 +49,7 @@ module Discovery
     sleep @configs.wait_time
 		@browser.text_field(:name, passfield).set(password)
     sleep @configs.wait_time
-		@browser.input(:type=>"submit").click
+		@browser.input(type: "submit").click
     sleep @configs.wait_time
 		@browser.url
 	end

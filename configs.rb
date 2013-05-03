@@ -25,7 +25,7 @@ class Configs
 		@password_guessing = false
 
 		#sets whether it should try every page and input fields  or random pages and input fields
-		@complete = true
+		@complete = false
 
 		# common passwords to try during password guessing
 		@common_passwords = []
