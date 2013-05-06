@@ -8,10 +8,12 @@ module FuzzVectors
         text_field.set(vector.chomp)
       end
       @browser.input(type: "submit").click if not @browser.input(type: "submit").nil?
+      sleep @configs.wait_time
       if @browser.alert.exists?
+        @browser.alert.close
         vuln << vector
-        @browser.alert.ok
       end
+      sleep @configs.wait_time
       @browser.back
     end
     if vuln.count > 0
@@ -20,13 +22,5 @@ module FuzzVectors
         @vulnerabilities_file.write("\t\t#{x}\n")
       end
     end
-  end
-
-  def sql
-
-  end
-
-  def int
-
   end
 end

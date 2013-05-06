@@ -33,9 +33,11 @@ class Crawler
           sleep @configs.wait_time
 					login_pages(url, link_queue, paths_visited)
 					inputs_found
-					@vulnerabilities_file.write("Vulnerabilities found on #{url}...\n")
-					xss(url) if @browser.text_fields.count > 0 and ((rand > 0.5 and not @configs.complete) or @configs.complete)
-					@vulnerabilities_file.write("\n")
+				 	if @browser.text_fields.count > 0 and ((rand > 0.5 and not @configs.complete) or @configs.complete)
+						@vulnerabilities_file.write("Vulnerabilities found on #{url}...\n")
+						xss
+						@vulnerabilities_file.write("#{"-"*60}\n")
+					end
 				end
 				@discover_inputs_file.write("#{"-"*60}\n")
 			end
