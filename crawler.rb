@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
 require './discovery'
 require './fuzz_vectors'
+require './sanitized_data'
 
 class Crawler
 	include Discovery
 	include FuzzVectors
+	include SanitizedData
 	def initialize
 		@configs = Configs.new
 		@browser = Watir::Browser.new
@@ -35,7 +37,8 @@ class Crawler
 					inputs_found
 				 	if @browser.text_fields.count > 0 and ((rand > 0.5 and not @configs.complete) or @configs.complete)
 						@vulnerabilities_file.write("Vulnerabilities found on #{url}...\n")
-						xss
+						# xss
+						check_sanitized_data
 						@vulnerabilities_file.write("#{"-"*60}\n")
 					end
 				end
