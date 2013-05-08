@@ -1,6 +1,6 @@
 module FuzzVectors
   extend self
-  def xss
+  def check_xss
     vuln = Array.new
     form = @browser.form
     File.open('FuzzVectors/XSS.txt').each do |vector|
@@ -25,7 +25,7 @@ module FuzzVectors
     end
   end
 
-  def sql
+  def check_sql_injection
     vuln = Array.new
     form = @browser.form
     matches = File.open('FuzzVectors/sql_match.txt')

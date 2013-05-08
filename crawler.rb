@@ -35,8 +35,8 @@ class Crawler
 					inputs_found
 				 	if @browser.text_fields.count > 0 and ((rand > 0.5 and not @configs.complete) or @configs.complete)
 						@vulnerabilities_file.write("Vulnerabilities found on #{url}...\n")
-						xss
-						sql
+						check_xss
+						check_sql_injection
 						@vulnerabilities_file.write("#{"-"*60}\n")
 					end
 				end
@@ -52,5 +52,5 @@ class Crawler
 	end
 end
 
-crawl = Crawler.new
-crawl.crawl
+crawler = Crawler.new
+crawler.crawl
