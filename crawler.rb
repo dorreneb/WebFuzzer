@@ -1,10 +1,12 @@
 #!/usr/bin/env ruby
 require './discovery'
 require './fuzz_vectors'
+require './sanitized_data'
 
 class Crawler
 	include Discovery
 	include FuzzVectors
+	include SanitizedData
 	def initialize
 		@configs = Configs.new
 		@browser = Watir::Browser.new
@@ -37,6 +39,7 @@ class Crawler
 						@vulnerabilities_file.write("Vulnerabilities found on #{url}...\n")
 						check_xss
 						check_sql_injection
+						check_sanitized_data
 						@vulnerabilities_file.write("#{"-"*60}\n")
 					end
 				end
