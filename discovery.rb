@@ -2,7 +2,6 @@ require 'set'
 require 'open-uri'
 require './configs'
 require 'watir-webdriver'
-require 'terminal-table'
 
 module Discovery
 	extend self
