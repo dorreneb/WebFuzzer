@@ -4,7 +4,7 @@ class Configs
 	def initialize()
 		# the first url to scan. will spider out from here.
 		# must be a full (with http[s]://) domain
-		@root_url = "http://127.0.0.1/"
+		@root_url = "http://127.0.0.1"
 
 		# sets what pages should be logged into and what the credentials are
 		# wooo multi-dimensional hash. don't try this at home.
