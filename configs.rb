@@ -16,7 +16,7 @@ class Configs
 		@custom_scannable_pages = ["http://127.0.0.1:8080/bodgeit/admin.jsp", "http://127.0.0.1/dvwa/vulnerabilities/view_source.php","http://127.0.0.1/dvwa/vulnerabilities/view_source_all.php", "http://127.0.0.1/dvwa/login.php"]
 
 		# sets pages that should be ignored
-		@ignore_pages = ["http://127.0.0.1:8080/WebGoat/attack", "http://127.0.0.1/dvwa/logout.php"]
+		@ignore_pages = ["http://127.0.0.1:8080/WebGoat/attack", "http://127.0.0.1/dvwa/logout.php", "http://127.0.0.1:8080/bodgeit/password.jsp", "http://127.0.0.1/dvwa/vulnerabilities/csrf/"]
 
 		# sets how long that it should wait between requests in seconds
 		@wait_time = 0

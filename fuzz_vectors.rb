@@ -14,7 +14,7 @@ module FuzzVectors
         vuln << vector.chomp
          @browser.cookies.delete 'randomcookie'
       end
-      @browser.back
+      @browser.back if @browser.text_fields.count == 0
     end
     if vuln.count > 0
       @vulnerabilities_file.write("\tCross site scripting\n")
@@ -35,14 +35,14 @@ module FuzzVectors
         text_field.set(vector.chomp)
       end
       @browser.input(type: "submit").click if not @browser.input(type: "submit").nil?
-      matches.each do |match|
-        if @browser.body.text.include? match
+      File.open('FuzzVectors/sql_match.txt').each do |match|
+        if @browser.body.html.include? match.chomp
           vuln << vector.chomp
           break
         end
       end
       sleep @configs.wait_time
-      @browser.back
+      @browser.back if @browser.text_fields.count == 0
     end
     if vuln.count > 0
       @vulnerabilities_file.write("\tSQL Injection\n")

@@ -1,6 +1,7 @@
-First name: admin\nSurname: admin
-First name: Gordon\nSurname: Brown
-First name: Hack\nSurname: Me
-First name: Pablo\nSurname: Picasso
-First name: Bob\nSurname: Smith
+First name: admin
+First name: Gordon
+First name: Hack
+First name: Pablo
+First name: Bob
 Welcome to the password protected area
+You have an error in your SQL syntax
