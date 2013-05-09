@@ -3,7 +3,7 @@ module FuzzVectors
   def check_xss
     vuln = Array.new
     form = @browser.form
-    File.open('FuzzVectors/XSS.txt').each do |vector|
+    @xss.each do |vector|
       next if rand > 0.5 and not @configs.complete
       @browser.text_fields.each do |text_field|
         text_field.set(vector.chomp)
@@ -28,14 +28,13 @@ module FuzzVectors
   def check_sql_injection
     vuln = Array.new
     form = @browser.form
-    matches = File.open('FuzzVectors/sql_match.txt')
-    File.open('FuzzVectors/SQL.txt').each do |vector|
+    @sql.each do |vector|
       next if rand > 0.5 and not @configs.complete
       @browser.text_fields.each do |text_field|
         text_field.set(vector.chomp)
       end
       @browser.input(type: "submit").click if not @browser.input(type: "submit").nil?
-      File.open('FuzzVectors/sql_match.txt').each do |match|
+      @matches.each do |match|
         if @browser.body.html.include? match.chomp
           vuln << vector.chomp
           break

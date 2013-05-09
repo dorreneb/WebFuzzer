@@ -39,6 +39,10 @@ module Discovery
 				end
 			end
 		end
+
+		# Scan webpage html for data that should not have been linked
+		
+
 	end
 
 	def login(userfield, passfield, username, password)
