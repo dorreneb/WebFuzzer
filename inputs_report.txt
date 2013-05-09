@@ -1,0 +1,444 @@
+Searching for inputs from root http://127.0.0.1...
+Scanning http://127.0.0.1/dvwa/login.php...
+	http://127.0.0.1/dvwa/login.php is flagged as a login page.
+		Credentials: admin/password
+		Credentials: admin/password
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/index.php...
+	Found http://127.0.0.1/dvwa/
+	Found http://127.0.0.1/dvwa/instructions.php
+	Found http://127.0.0.1/dvwa/setup.php
+	Found http://127.0.0.1/dvwa/vulnerabilities/brute/
+	Found http://127.0.0.1/dvwa/vulnerabilities/exec/
+	Found http://127.0.0.1/dvwa/vulnerabilities/csrf/
+	Found http://127.0.0.1/dvwa/vulnerabilities/fi/
+	Found http://127.0.0.1/dvwa/vulnerabilities/sqli/
+	Found http://127.0.0.1/dvwa/vulnerabilities/sqli_blind/
+	Found http://127.0.0.1/dvwa/vulnerabilities/upload/
+	Found http://127.0.0.1/dvwa/vulnerabilities/xss_r/
+	Found http://127.0.0.1/dvwa/vulnerabilities/xss_s/
+	Found http://127.0.0.1/dvwa/security.php
+	Found http://127.0.0.1/dvwa/phpinfo.php
+	Found http://127.0.0.1/dvwa/about.php
+	Found http://127.0.0.1/dvwa/logout.php
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/logout.php...
+	http://127.0.0.1/dvwa/logout.php has been flagged to be ignored.
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/about.php...
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/phpinfo.php...
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/security.php...
+	Found http://127.0.0.1/dvwa/ids_log.php
+
+	Inputs Found:
+		name: seclev_submit
+		type: submit
+		value: Submit
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/ids_log.php...
+
+	Inputs Found:
+		name: clear_log
+		type: submit
+		value: Clear Log
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/xss_s/...
+
+	Inputs Found:
+		name: txtName
+		type: text
+
+		name: btnSign
+		type: submit
+		value: Sign Guestbook
+
+		type: button
+		value: View Help
+
+		type: button
+		value: View Source
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/xss_r/...
+
+	Inputs Found:
+		name: name
+		type: text
+
+		type: submit
+		value: Submit
+
+		type: button
+		value: View Help
+
+		type: button
+		value: View Source
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/upload/...
+
+	Inputs Found:
+		name: MAX_FILE_SIZE
+		type: hidden
+		value: 100000
+
+		name: uploaded
+		type: file
+
+		name: Upload
+		type: submit
+		value: Upload
+
+		type: button
+		value: View Help
+
+		type: button
+		value: View Source
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/sqli_blind/...
+
+	Inputs Found:
+		name: id
+		type: text
+
+		name: Submit
+		type: submit
+		value: Submit
+
+		type: button
+		value: View Help
+
+		type: button
+		value: View Source
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/sqli/...
+
+	Inputs Found:
+		name: id
+		type: text
+
+		name: Submit
+		type: submit
+		value: Submit
+
+		type: button
+		value: View Help
+
+		type: button
+		value: View Source
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/fi/?page=include.php...
+
+	Inputs Found:
+		type: button
+		value: View Help
+
+		type: button
+		value: View Source
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/csrf/...
+	http://127.0.0.1/dvwa/vulnerabilities/csrf/ has been flagged to be ignored.
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/exec/...
+
+	Inputs Found:
+		name: ip
+		type: text
+
+		name: submit
+		type: submit
+		value: submit
+
+		type: button
+		value: View Help
+
+		type: button
+		value: View Source
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/brute/...
+
+	Inputs Found:
+		name: username
+		type: text
+
+		name: password
+		type: text
+
+		name: Login
+		type: submit
+		value: Login
+
+		type: button
+		value: View Help
+
+		type: button
+		value: View Source
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/setup.php...
+
+	Inputs Found:
+		name: create_db
+		type: submit
+		value: Create / Reset Database
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/instructions.php...
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/...
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/view_source_all.php...
+
+	Inputs Found:
+		type: button
+		value: <-- Back
+
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa/vulnerabilities/view_source.php...
+
+	Inputs Found:
+		type: button
+		value: Compare
+
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/admin.jsp...
+	Found http://127.0.0.1:8080/bodgeit/home.jsp
+	Found http://127.0.0.1:8080/bodgeit/about.jsp
+	Found http://127.0.0.1:8080/bodgeit/contact.jsp
+	Found http://127.0.0.1:8080/bodgeit/login.jsp
+	Found http://127.0.0.1:8080/bodgeit/basket.jsp
+	Found http://127.0.0.1:8080/bodgeit/search.jsp
+	Found http://127.0.0.1:8080/bodgeit/product.jsp
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/product.jsp?typeid=6...
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/search.jsp...
+	Found http://127.0.0.1:8080/bodgeit/advanced.jsp
+
+	Inputs Found:
+		name: q
+		type: text
+
+		type: submit
+		value: Search
+
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/advanced.jsp...
+
+	Inputs Found:
+		name: product
+		type: text
+
+		name: description
+		type: text
+
+		name: type
+		type: text
+
+		name: price
+		type: text
+
+		type: submit
+		value: Search
+
+		name: q
+		type: hidden
+
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/basket.jsp...
+
+	Inputs Found:
+		name: update
+		type: submit
+		value: Update Basket
+
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/login.jsp...
+	Found http://127.0.0.1:8080/bodgeit/register.jsp
+	http://127.0.0.1:8080/bodgeit/login.jsp is flagged as a login page.
+		Credentials: test@thebodgeitstore.com/password
+		Credentials: test@thebodgeitstore.com/password
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/register.jsp...
+	Found http://127.0.0.1:8080/bodgeit/password.jsp
+	Found http://127.0.0.1:8080/bodgeit/logout.jsp
+
+	Inputs Found:
+		name: username
+		type: text
+
+		name: password1
+		type: text
+
+		name: password2
+		type: text
+
+		type: submit
+		value: Register
+
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/logout.jsp...
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/password.jsp...
+	http://127.0.0.1:8080/bodgeit/password.jsp has been flagged to be ignored.
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/contact.jsp...
+
+	Inputs Found:
+		name: null
+		type: hidden
+
+		name: anticsrf
+		type: hidden
+		value: 0.32114978607495914
+
+		type: submit
+		value: Submit
+
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/about.jsp...
+	Found http://127.0.0.1:8080/bodgeit/score.jsp
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/score.jsp...
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit/home.jsp...
+------------------------------------------------------------
+Scanning http://127.0.0.1...
+	Found http://127.0.0.1:8080/WebGoat/attack
+	Found http://127.0.0.1/dvwa
+	Found http://127.0.0.1:8080/bodgeit
+	Found http://127.0.0.1:8080/jpetstore
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/jpetstore...
+	Found http://127.0.0.1:8080/jpetstore/actions/Catalog.action
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/jpetstore/actions/Catalog.action...
+	Found http://127.0.0.1:8080/jpetstore/actions/Cart.action
+	Found http://127.0.0.1:8080/jpetstore/actions/Account.action
+	Found http://127.0.0.1:8080/jpetstore/help.html
+	Found http://127.0.0.1:8080/jpetstore/actions/www.mybatis.org
+
+	Inputs Found:
+		name: keyword
+		type: text
+
+		name: searchProducts
+		type: submit
+		value: Search
+
+		name: _sourcePage
+		type: hidden
+		value: TldL7QqhHKUYgnBtKRsL_OsL_Nk_dYGfhaAEYcFLnvFM36SHPZkv3w==
+
+		name: __fp
+		type: hidden
+		value: kNZbFrHY4E0=
+
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/jpetstore/actions/www.mybatis.org...
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/jpetstore/help.html...
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/jpetstore/actions/Account.action;jsessionid=9C112BD26F4817E9437CC80FBC62FDDD?signonForm=...
+
+	Inputs Found:
+		name: keyword
+		type: text
+		value: <script>alert("XSS")</script>
+
+		name: searchProducts
+		type: submit
+		value: Search
+
+		name: _sourcePage
+		type: hidden
+		value: iciXwLzMYW0YgnBtKRsL_HY-z3yHmV4z5n0Ig79Qo4bijtiIGg3aWw==
+
+		name: __fp
+		type: hidden
+		value: XBrNDg0khnM=
+
+		name: username
+		type: text
+		value: j2ee
+
+		name: password
+		type: text
+		value: j2ee
+
+		name: signon
+		type: submit
+		value: Login
+
+		name: _sourcePage
+		type: hidden
+		value: 7wkaCPcpxhIYgnBtKRsL_HY-z3yHmV4z5n0Ig79Qo4bijtiIGg3aWw==
+
+		name: __fp
+		type: hidden
+		value: 31Mrgs8n04s=
+
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/jpetstore/actions/Cart.action;jsessionid=9C112BD26F4817E9437CC80FBC62FDDD?viewCart=...
+
+	Inputs Found:
+		name: keyword
+		type: text
+		value: <script>alert("XSS")</script>
+
+		name: searchProducts
+		type: submit
+		value: Search
+
+		name: _sourcePage
+		type: hidden
+		value: CdFhOop4ojoYgnBtKRsL_ExAxXdYTJLsoUNk1bjhCD8=
+
+		name: __fp
+		type: hidden
+		value: Jo64iAEE5nI=
+
+		name: updateCartQuantities
+		type: submit
+		value: Update Cart
+
+		name: _sourcePage
+		type: hidden
+		value: 4udZpj5WNm4YgnBtKRsL_ExAxXdYTJLsoUNk1bjhCD8=
+
+		name: __fp
+		type: hidden
+		value: 3JwPJj944LU=
+
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/bodgeit...
+------------------------------------------------------------
+Scanning http://127.0.0.1/dvwa...
+------------------------------------------------------------
+Scanning http://127.0.0.1:8080/WebGoat/attack...
+	http://127.0.0.1:8080/WebGoat/attack has been flagged to be ignored.
+------------------------------------------------------------
+Cookies Found:
+	name: PHPSESSID
+	value: 5c92c3bd7959c758192c83cc3f30eb30
+	path: /
+	domain: 127.0.0.1
+	expires: 
+	secure: false
+
+	name: security
+	value: low
+	path: /dvwa/
+	domain: 127.0.0.1
+	expires: 
+	secure: false
+
