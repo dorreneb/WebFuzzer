@@ -1,3 +1,9 @@
+phone
 credit
-card
-dvwA
+password
+pass
+word
+id
+admin
+config
+script

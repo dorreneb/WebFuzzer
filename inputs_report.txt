@@ -299,7 +299,7 @@ Scanning http://127.0.0.1:8080/bodgeit/contact.jsp...
 
 		name: anticsrf
 		type: hidden
-		value: 0.32114978607495914
+		value: 0.7171030244887805
 
 		type: submit
 		value: Submit
@@ -337,18 +337,18 @@ Scanning http://127.0.0.1:8080/jpetstore/actions/Catalog.action...
 
 		name: _sourcePage
 		type: hidden
-		value: TldL7QqhHKUYgnBtKRsL_OsL_Nk_dYGfhaAEYcFLnvFM36SHPZkv3w==
+		value: n5XQl9pwuvkYgnBtKRsL_OsL_Nk_dYGfhaAEYcFLnvFM36SHPZkv3w==
 
 		name: __fp
 		type: hidden
-		value: kNZbFrHY4E0=
+		value: TYksVPjhuJY=
 
 ------------------------------------------------------------
 Scanning http://127.0.0.1:8080/jpetstore/actions/www.mybatis.org...
 ------------------------------------------------------------
 Scanning http://127.0.0.1:8080/jpetstore/help.html...
 ------------------------------------------------------------
-Scanning http://127.0.0.1:8080/jpetstore/actions/Account.action;jsessionid=9C112BD26F4817E9437CC80FBC62FDDD?signonForm=...
+Scanning http://127.0.0.1:8080/jpetstore/actions/Account.action;jsessionid=260791120FCAE0598A1C4EFD03D8956B?signonForm=...
 
 	Inputs Found:
 		name: keyword
@@ -361,11 +361,11 @@ Scanning http://127.0.0.1:8080/jpetstore/actions/Account.action;jsessionid=9C112
 
 		name: _sourcePage
 		type: hidden
-		value: iciXwLzMYW0YgnBtKRsL_HY-z3yHmV4z5n0Ig79Qo4bijtiIGg3aWw==
+		value: epuIsM9W4kUYgnBtKRsL_HY-z3yHmV4z5n0Ig79Qo4bijtiIGg3aWw==
 
 		name: __fp
 		type: hidden
-		value: XBrNDg0khnM=
+		value: 4XrwOus9zh4=
 
 		name: username
 		type: text
@@ -381,14 +381,14 @@ Scanning http://127.0.0.1:8080/jpetstore/actions/Account.action;jsessionid=9C112
 
 		name: _sourcePage
 		type: hidden
-		value: 7wkaCPcpxhIYgnBtKRsL_HY-z3yHmV4z5n0Ig79Qo4bijtiIGg3aWw==
+		value: S6VNvtO3heYYgnBtKRsL_HY-z3yHmV4z5n0Ig79Qo4bijtiIGg3aWw==
 
 		name: __fp
 		type: hidden
-		value: 31Mrgs8n04s=
+		value: oOMfCmp7BPI=
 
 ------------------------------------------------------------
-Scanning http://127.0.0.1:8080/jpetstore/actions/Cart.action;jsessionid=9C112BD26F4817E9437CC80FBC62FDDD?viewCart=...
+Scanning http://127.0.0.1:8080/jpetstore/actions/Cart.action;jsessionid=260791120FCAE0598A1C4EFD03D8956B?viewCart=...
 
 	Inputs Found:
 		name: keyword
@@ -401,11 +401,11 @@ Scanning http://127.0.0.1:8080/jpetstore/actions/Cart.action;jsessionid=9C112BD2
 
 		name: _sourcePage
 		type: hidden
-		value: CdFhOop4ojoYgnBtKRsL_ExAxXdYTJLsoUNk1bjhCD8=
+		value: y6XB7NYlRo8YgnBtKRsL_ExAxXdYTJLsoUNk1bjhCD8=
 
 		name: __fp
 		type: hidden
-		value: Jo64iAEE5nI=
+		value: BDV8dzpcy8c=
 
 		name: updateCartQuantities
 		type: submit
@@ -413,11 +413,11 @@ Scanning http://127.0.0.1:8080/jpetstore/actions/Cart.action;jsessionid=9C112BD2
 
 		name: _sourcePage
 		type: hidden
-		value: 4udZpj5WNm4YgnBtKRsL_ExAxXdYTJLsoUNk1bjhCD8=
+		value: R3VQ4vAOS4gYgnBtKRsL_ExAxXdYTJLsoUNk1bjhCD8=
 
 		name: __fp
 		type: hidden
-		value: 3JwPJj944LU=
+		value: oMLQyfroO4Q=
 
 ------------------------------------------------------------
 Scanning http://127.0.0.1:8080/bodgeit...
@@ -429,7 +429,7 @@ Scanning http://127.0.0.1:8080/WebGoat/attack...
 ------------------------------------------------------------
 Cookies Found:
 	name: PHPSESSID
-	value: 5c92c3bd7959c758192c83cc3f30eb30
+	value: 41c445b076779d7ffd9aa64113fe7132
 	path: /
 	domain: 127.0.0.1
 	expires: 
