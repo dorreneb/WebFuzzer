@@ -1,7 +1,7 @@
 class Configs
 	attr_reader :login_pages, :custom_scannable_pages, :ignore_pages, :root_url, :wait_time, :password_guessing, :common_passwords, :complete
 
-	def initialize()
+	def initialize
 		# the first url to scan. will spider out from here.
 		# must be a full (with http[s]://) domain
 		@root_url = "http://127.0.0.1"

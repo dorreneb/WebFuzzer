@@ -8,7 +8,7 @@ module FuzzVectors
       @browser.text_fields.each do |text_field|
         text_field.set(vector.chomp)
       end
-      @browser.input(type: "submit").click if not @browser.input(type: "submit").nil?
+      @browser.input(type: "submit").click if @browser.input(type: "submit").exists?
       sleep @configs.wait_time
       if @browser.cookies.to_a.select{|x| x[:name] == 'randomcookie'}.count > 0
         vuln << vector.chomp

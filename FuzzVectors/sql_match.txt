@@ -4,4 +4,3 @@ First name: Hack
 First name: Pablo
 First name: Bob
 Welcome to the password protected area
-You have an error in your SQL syntax
