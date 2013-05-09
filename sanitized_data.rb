@@ -2,6 +2,7 @@ module SanitizedData
 	extend self
   def check_sanitized_data
     vuln = Array.new
+    array = Array.new
     @sanitized.each do |vector|
       next if rand > 0.5 and not @configs.complete
       form = @browser.form
@@ -18,10 +19,11 @@ module SanitizedData
       @browser.back
     end
     if vuln.count > 0
-      @vulnerabilities_file.write("\tImproperly Sanitized Data\n")
+      array << "\tImproperly Sanitized Data\n"
       vuln.each do |x|
-        @vulnerabilities_file.write("\t\tForm Name: #{x.name.empty? ? x.name : "Unamed Form"}\n")
+        array << "\t\tForm Name: #{x.name.empty? ? x.name : "Unamed Form"}\n"
       end
     end
+    array
   end
 end

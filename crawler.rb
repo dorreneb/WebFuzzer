@@ -50,11 +50,17 @@ class Crawler
 					login_pages(url, link_queue, paths_visited)
 					inputs_found
 				 	if @browser.text_fields.count > 0 and ((rand > 0.5 and not @configs.complete) or @configs.complete)
-						@vulnerabilities_file.write("Vulnerabilities found on #{url}...\n")
-						check_xss
-						check_sql_injection
-						check_sanitized_data
-						@vulnerabilities_file.write("#{"-"*60}\n")
+						vulnerabilities = Array.new
+						vulnerabilities.concat(check_xss)
+						vulnerabilities.concat(check_sql_injection)
+						vulnerabilities.concat(check_sanitized_data)
+						if vulnerabilities.count > 0
+							@vulnerabilities_file.write("Vulnerabilities found on #{url}...\n")
+							@vulnerabilities_file.write("#{"-"*60}\n")
+							vulnerabilities.each do |x|
+								@vulnerabilities_file.write(x)
+							end
+						end
 					end
 				end
 				@discover_inputs_file.write("#{"-"*60}\n")

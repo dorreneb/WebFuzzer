@@ -41,7 +41,6 @@ module Discovery
 		end
 
 		# Scan webpage html for data that should not have been linked
-		
 
 	end
 

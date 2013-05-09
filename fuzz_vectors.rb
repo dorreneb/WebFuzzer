@@ -2,6 +2,7 @@ module FuzzVectors
   extend self
   def check_xss
     vuln = Array.new
+    array = Array.new
     form = @browser.form
     @xss.each do |vector|
       next if rand > 0.5 and not @configs.complete
@@ -17,16 +18,18 @@ module FuzzVectors
       @browser.back if @browser.text_fields.count == 0
     end
     if vuln.count > 0
-      @vulnerabilities_file.write("\tCross site scripting\n")
-      @vulnerabilities_file.write("\t\tForm #{form.name.empty? ? form.name : "Unamed Form"}:\n")
+      array << "\tCross site scripting\n"
+      array << "\t\tForm #{form.name.empty? ? form.name : "Unamed Form"}:\n"
       vuln.each do |x|
-        @vulnerabilities_file.write("\t\t\t#{x}\n")
+        array << "\t\t\t#{x}\n"
       end
     end
+    array
   end
 
   def check_sql_injection
     vuln = Array.new
+    array = Array.new
     form = @browser.form
     @sql.each do |vector|
       next if rand > 0.5 and not @configs.complete
@@ -44,11 +47,12 @@ module FuzzVectors
       @browser.back if @browser.text_fields.count == 0
     end
     if vuln.count > 0
-      @vulnerabilities_file.write("\tSQL Injection\n")
-      @vulnerabilities_file.write("\t\tForm #{form.name.empty? ? form.name : "Unamed Form"}:\n")
+      array << "\tSQL Injection\n"
+      array << "\t\tForm #{form.name.empty? ? form.name : "Unamed Form"}:\n"
       vuln.each do |x|
-        @vulnerabilities_file.write("\t\t#{x}\n")
+        array << "\t\t#{x}\n"
       end
     end
+    array
   end
 end

